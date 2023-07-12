@@ -4,7 +4,7 @@ import com.common.dto.DoctorDto;
 import com.common.response.DepartmentResponse;
 import com.slot_service.entities.Slot;
 import com.slot_service.entities.SlotStatus;
-import com.slot_service.imp.SlotRepository;
+import com.slot_service.repos.SlotRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;

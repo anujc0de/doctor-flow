@@ -1,6 +1,7 @@
 package com.appointment_service.apis;
 
 
+import com.appointment_service.factory.AppointmentFactory;
 import com.appointment_service.mapper.AppointmentMapper;
 import com.appointment_service.request.AppointmentRequest;
 import com.appointment_service.service.AppointmentService;
@@ -15,9 +16,11 @@ public class AppointmentController {
     private final AppointmentMapper appointmentMapper = AppointmentMapper.INSTANCE;
 
     private final AppointmentService appointmentService;
+    private  final AppointmentFactory appointmentFactory;
 
-    public AppointmentController(AppointmentService appointmentService) {
+    public AppointmentController(AppointmentService appointmentService, AppointmentFactory appointmentFactory) {
         this.appointmentService = appointmentService;
+        this.appointmentFactory = appointmentFactory;
     }
 
     @GetMapping("/{id}")
@@ -32,9 +35,13 @@ public class AppointmentController {
     @PostMapping
     public ResponseEntity<?> bookAppointment(@RequestBody AppointmentRequest appointmentRequest) {
 
-        var appointment = appointmentMapper.appointmentRequestToAppointment(appointmentRequest);
 
-        return new ResponseEntity<>(appointmentService.bookAppointment(appointment), HttpStatus.CREATED);
+        var appointmentCommand =appointmentFactory.getAppointmentCommand();
+        var appointment = appointmentMapper.appointmentRequestToAppointment(appointmentRequest);
+        var pendingAppointment=appointmentCommand.bookAppointment(appointment);
+
+
+        return new ResponseEntity<>(pendingAppointment, HttpStatus.CREATED);
 
 
     }

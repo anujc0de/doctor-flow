@@ -32,7 +32,7 @@ public class PaymentService {
 
         assert appointmentResponse != null;
 
-        //mark slot is confirmed
+        //mark slot is confirmed`
         webClientBuilder.build()
                 .post()
                 .uri("http://localhost:8084/slots/{id}/confirm", appointmentResponse.getSlotId())

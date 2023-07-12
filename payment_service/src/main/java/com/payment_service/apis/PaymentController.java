@@ -1,5 +1,6 @@
 package com.payment_service.apis;
 
+import com.payment_service.factory.PaymentFactory;
 import com.payment_service.mapper.PaymentMapper;
 import com.payment_service.request.PaymentRequest;
 import com.payment_service.services.PaymentService;
@@ -17,12 +18,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class PaymentController {
     private final PaymentMapper paymentMapper = PaymentMapper.INSTANCE;
     private final PaymentService paymentService;
+    private  final PaymentFactory paymentFactory;
 
     @PostMapping
     public ResponseEntity<?> makePayment(@RequestBody PaymentRequest paymentRequest) {
 
+        var paymentCommand =paymentFactory.getPaymentCommand();
         var payment=paymentMapper.paymenttRequestToPayment(paymentRequest);
-        return new ResponseEntity<>(paymentService.makePayment(payment), HttpStatus.CREATED);
+        var pendingPayment=paymentCommand.makePayment(payment);
+        return new ResponseEntity<>(pendingPayment, HttpStatus.CREATED);
 
 
     }

@@ -1,4 +1,4 @@
-package com.slot_service.imp;
+package com.slot_service.repos;
 
 import com.slot_service.entities.Slot;
 import org.springframework.data.jpa.repository.JpaRepository;

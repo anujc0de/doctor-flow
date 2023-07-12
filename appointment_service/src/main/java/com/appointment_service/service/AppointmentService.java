@@ -3,7 +3,7 @@ package com.appointment_service.service;
 
 import com.appointment_service.entities.Appointment;
 import com.appointment_service.entities.AppointmentStatus;
-import com.appointment_service.imp.AppointmentRepository;
+import com.appointment_service.repos.AppointmentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
