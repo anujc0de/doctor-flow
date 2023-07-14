@@ -16,7 +16,7 @@ import org.springframework.context.annotation.Configuration;
 public class SlotServiceAppConfig {
 
   @Bean
-  public SlotWorker appointmentWorker(SlotActivitiesService slotActivitiesService) {
+  public SlotWorker slotWorker(SlotActivitiesService slotActivitiesService) {
     return new SlotWorker(getSlotActivity(slotActivitiesService), workflowOrchestratorClient());
   }
 

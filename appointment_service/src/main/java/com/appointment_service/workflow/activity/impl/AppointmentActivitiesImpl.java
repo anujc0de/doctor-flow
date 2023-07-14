@@ -30,6 +30,7 @@ public class AppointmentActivitiesImpl implements AppointmentActivities {
 
     @Override
     public void cancelAppointment(PaymentDto payment) {
+
         appointmentActivitiesService.cancelAppointment(payment.getAppointmentId());
 
     }

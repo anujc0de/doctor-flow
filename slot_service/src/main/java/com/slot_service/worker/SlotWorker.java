@@ -34,6 +34,6 @@ public class SlotWorker {
 
     workerFactory.start();
 
-    log.info("appointment slot started..");
+    log.info("worker slot started..");
   }
 }

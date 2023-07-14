@@ -26,6 +26,7 @@ public class AppointmentActivitiesService {
     public void confirmAppointment(int id) {
         var appointment = appointmentRepository.findById(id).orElseThrow();
         appointment.setStatus(AppointmentStatus.Confirmed);
+        throw new RuntimeException("SOME ERROR");
 
 
     }
